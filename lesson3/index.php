@@ -1,48 +1,30 @@
 <html>
-
 <head>
-<title>index</title>
+	<meta charset="utf-8">
+	<title>Города</title>
 </head>
-
-<body>
-
 <?php
-$u1 = $_GET['u1'];
-$u2 = $_GET['u2'];
-
-$u3 = $_GET['u3'];
-
-switch($u3)
+function get_city($letter)
 {
-	case "+":
-		$res = $u1 . " + " . $u2 . " = " . ($u1+$u2);
-		break;
-	case "-":
-		$res = $u1 . " - " . $u2 . " = " . ($u1-$u2);
-		break;
-	case "*":
-		$res = $u1 . " * " . $u2 . " = " . ($u1*$u2);
-		break;
-	case "/":
-		$res = $u1 . " / " . $u2 . " = " . ($u1/$u2);
-		break;
+	
 }
-?>
+if(isset($_POST['user']]))
+{
+	$user_city = $_POST['user'];
+}
+else
+{
+	$user_city = null;
+}
 
-<form action="index.php" method="get">
-	<input type="text" name="u1" value="<?php echo $u1?>">
-	<select name="u3">
-		<option value="+" <?php if($u3 == '+')echo "selected" ?>>+</option>
-		<option value="-" <?php if($u3 == '-')echo "selected" ?>>-</option>
-		<option value="*" <?php if($u3 == '*')echo "selected" ?>>*</option>
-		<option value="/" <?php if($u3 == '/')echo "selected" ?>>/</option>
-	</select>
-	<input type="text" name="u2" value="<?php echo $_GET['u2']?>">
+?>
+<body>
+	<form action="index.php" method="post">
+	<input type="text" name="user">
 	<input type="submit" value="SUBMIT">
-	=
 	<?php echo $res; ?>
 </form>
 
-
+<p><?php echo $bot_city; ?></p>
 </body>
 </html>
