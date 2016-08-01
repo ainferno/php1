@@ -1,25 +1,6 @@
-<html>
-<head>
-	<style>
-		.ramka
-		{
-			border: 2px solid red;
-			width: 200px;
-			
-		}
-		.ramka input
-		{
-			margin: 5px;
-		}
-		.ramka h2
-		{
-			text-align: center;
-		}
-	</style>
-	<meta charset="utf-8">
-	<title>Гостевая книга</title>
-</head>
 <?php
+include 'lesson5.php';
+
 class TextFile
 {
 	protected $file_name;
@@ -70,19 +51,10 @@ class GuestBook
 		$this->text_file->save($b);
 	}
 }
-?>
-<body>
-<h1> Гостевая книга </h1>
-<div class="ramka">
-	<form action="lesson5.php" method="post">
-		<h2>Оставьте ваш комментарий</h2>
-		<input type="text" name="user" value="user name">
-		<input type="text" name="text" value="text">
-		<input type="submit" value="SUBMIT">
-	</form>
-</div>
-<?php 
+
+$view1 = new View();
 $guest_book = new GuestBook(__DIR__ . '/guest_book.txt');
+
 if(isset($_POST['text']) && $_POST['text'] != null){
 	if(isset($_POST['user']) && $_POST['user'] != null)
 		$text = "\r\n".$_POST['user']." - ".$_POST['text'];
@@ -91,11 +63,9 @@ if(isset($_POST['text']) && $_POST['text'] != null){
 	$guest_book->append($text);
 	$guest_book->saveBook();
 }
-foreach($guest_book->getData() as $a){
-	echo '<p>' . $a . '<p>';
+foreach($guest_book->getData() as $i => $a){
+	$view1->assign($i,$a);
 }
+
+$view1->display(__DIR__."/template.php");
 ?>
-
-
-</body>
-</html>
